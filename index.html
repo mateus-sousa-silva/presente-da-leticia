@@ -4,7 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pedido de Namoro 💖</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffc0cb, #ffe4e1);
+      width:390px;
+      height: 844px;
+      max-width: 400px;
+      max-height: 844px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeIn 2s ease;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #d63384;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      position: relative;
+      height: 50px;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .yes {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    .yes:hover {
+      background-color: #ff1493;
+    }
+
+    .no {
+      background-color: #d3d3d3;
+      color: #333;
+      position: relative;
+      transition: opacity 0.2s ease, top 0.3s ease, left 0.3s ease;
+      z-index: 10;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #e91e63;
+      display: none;
+      animation: popIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/contain;
+      animation: float 4s linear infinite;
+      opacity: 0.7;
+      z-index: 0;
+    }
+    .imagem_fofa{
+      max-width: 200px;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
+
+    /* Responsivo */
+    @media (max-width: 390px) {
+        body{
+          width:390px;
+          height: 844px;
+          max-width: 400px;
+          max-height: 844px;
+        }
+        .imagem_fofa{
+          max-width: 80px;
+          position: relative;
+          z-index: 10;
+        }
+        .container {
+          width: 80%;
+          padding: 20px;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        button {
+          font-size: 0.9rem;
+          margin: 0px;
+        }
+    }
+  </style>
 </head>
 <body>
 
@@ -15,14 +144,51 @@
       <button class="no">Não 😢</button>
     </div>
     <div class="message">
-      <img class="imagem_fofa" src="3d8bb60a-595a-4b1a-b9ea-113828e75aef.jpg" alt="Imagem fofa 1">
-      <img class="imagem_fofa" src="9758a6e9-4436-4ae5-8e6f-c7e4bd58b497.jpg" alt="Imagem fofa 2">
-      <img class="imagem_fofa" src="a5953035-037c-4a52-b33d-dca55658d78c.jpg" alt="Imagem fofa 3">
+      <img class="imagem_fofa" src="..\presente da leticia\3d8bb60a-595a-4b1a-b9ea-113828e75aef.jpg">
+      <img class="imagem_fofa" src="..\presente da leticia\9758a6e9-4436-4ae5-8e6f-c7e4bd58b497.jpg">
+      <img class="imagem_fofa" src="..\presente da leticia\a5953035-037c-4a52-b33d-dca55658d78c.jpg">
       <br>
       Eu te amo meus 1,55, você me fez a pessoa mais feliz do mundo! 💖
     </div>
   </div>
+  <!-- JavaScript com corações e botões -->
+  <script>
+    // Corações flutuando
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 200 + "vw";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+    setInterval(createHeart, 400);
 
-  <script src="script.js"></script>
+    // Botões
+    const yesBtn = document.querySelector('.yes');
+    const noBtn = document.querySelector('.no');
+    const message = document.querySelector('.message');
+
+    yesBtn.addEventListener('click', () => {
+      message.style.display = 'block';
+      noBtn.style.opacity = 0;
+      yesBtn.style.position = 'center';
+    });
+
+    // Botão "Não" que desaparece e reaparece em outra posição
+    noBtn.addEventListener('click', () => {
+      noBtn.style.transition = "opacity 0.5s ease";
+      noBtn.style.opacity = 0;
+
+      setTimeout(() => {
+        const x = Math.random() * (window.innerWidth - 390);
+        const y = Math.random() * (window.innerHeight - 844);
+
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+        noBtn.style.opacity = 1;
+      }, 200);
+    });
+  </script>
 </body>
 </html>

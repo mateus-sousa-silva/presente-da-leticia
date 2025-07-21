@@ -22,11 +22,11 @@ yesBtn.addEventListener('click', () => {
 // Botão "Não" que desaparece e reaparece em outra posição
 noBtn.addEventListener('click', () => {
   noBtn.style.transition = "opacity 0.5s ease";
-  noBtn.style.opacity = 0;
+  noBtn.style.opacity = 1;
 
   setTimeout(() => {
-    const x = Math.random() * (window.innerWidth - 350);
-    const y = Math.random() * (window.innerHeight - 1500);
+    const x = Math.random() * (window.innerWidth - 2000);
+    const y = Math.random() * (window.innerHeight - 2000);
 
     noBtn.style.position = 'absolute';
     noBtn.style.left = `${x}px`;

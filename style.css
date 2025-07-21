@@ -5,7 +5,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  max-height: 4000vh; /* viewport real de celulares modernos */
+  height: 100dvh; /* viewport real de celulares modernos */
   overflow: hidden; /* remove qualquer scroll */
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(135deg, #ffc0cb, #ffe4e1);
@@ -25,7 +25,7 @@ html, body {
   animation: fadeIn 1s ease;
   position: relative;
   max-width: 95vw;
-  max-height: 100vh;
+  max-height: 90dvh;
   overflow: hidden;
 }
 
@@ -110,9 +110,6 @@ button {
 
 /* Responsivo */
 @media (max-width: 600px) {
-    html{
-        height: 100vh; /* viewport real de celulares modernos */
-    }
   .container {
     padding: 20px;
   }
