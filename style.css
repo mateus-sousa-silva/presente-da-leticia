@@ -1,33 +1,41 @@
-body {
+* {
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
   padding: 0;
+  max-height: 4000vh; /* viewport real de celulares modernos */
+  overflow: hidden; /* remove qualquer scroll */
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(135deg, #ffc0cb, #ffe4e1);
-  height: 100vh;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  touch-action: none; /* bloqueia gesto de scroll no mobile */
+  overscroll-behavior: none; /* evita scroll elástico */
 }
 
 .container {
   background: white;
-  padding: 40px;
+  padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   text-align: center;
-  animation: fadeIn 2s ease;
+  animation: fadeIn 1s ease;
   position: relative;
+  max-width: 95vw;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #d63384;
 }
 
 .buttons {
   margin-top: 20px;
-  position: relative;
   height: 50px;
 }
 
@@ -54,16 +62,17 @@ button {
   background-color: #d3d3d3;
   color: #333;
   position: relative;
-  transition: opacity 0.2s ease, top 0.3s ease, left 0.3s ease;
   z-index: 10;
 }
 
 .message {
   margin-top: 20px;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #e91e63;
   display: none;
-  animation: popIn 0.5s ease forwards;
+  overflow-y: auto;
+  max-height: 35vh;
+  padding-top: 10px;
 }
 
 @keyframes fadeIn {
@@ -84,40 +93,44 @@ button {
   animation: float 4s linear infinite;
   opacity: 0.7;
   z-index: 0;
+  pointer-events: none;
 }
 
 .imagem_fofa {
-  max-width: 200px;
+  max-width: 160px;
+  height: auto;
   position: relative;
   z-index: 10;
 }
 
 @keyframes float {
   0% { transform: translateY(0) scale(1); }
-  100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+  100% { transform: translateY(-100dvh) scale(1.5); opacity: 0; }
 }
 
+/* Responsivo */
 @media (max-width: 600px) {
-  .imagem_fofa {
-    max-width: 80px;
-  }
-
-  body {
-    max-width: 100%;
-    overflow: hidden;
-  }
-
+    html{
+        height: 100vh; /* viewport real de celulares modernos */
+    }
   .container {
-    width: 80%;
     padding: 20px;
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .imagem_fofa {
+    max-width: 90px;
   }
 
   button {
     font-size: 0.9rem;
-    margin: 0px;
+    padding: 10px 20px;
+  }
+
+  .message {
+    font-size: 1.1rem;
   }
 }
