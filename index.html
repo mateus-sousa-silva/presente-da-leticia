@@ -5,19 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pedido de Namoro 💖</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #ffc0cb, #ffe4e1);
-      width:390px;
-      height: 844px;
-      max-width: 400px;
-      max-height: 844px;
+      width: 100vw;
+      height: 100dvh;
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
+      touch-action: none;
+      overscroll-behavior: none;
     }
 
     .container {
@@ -28,6 +31,9 @@
       text-align: center;
       animation: fadeIn 2s ease;
       position: relative;
+      max-width: 95vw;
+      max-height: 90dvh;
+      overflow: hidden;
     }
 
     h1 {
@@ -74,6 +80,9 @@
       color: #e91e63;
       display: none;
       animation: popIn 0.5s ease forwards;
+      overflow-y: auto;
+      max-height: 35vh;
+      padding-top: 10px;
     }
 
     @keyframes fadeIn {
@@ -94,44 +103,41 @@
       animation: float 4s linear infinite;
       opacity: 0.7;
       z-index: 0;
+      pointer-events: none;
     }
     .imagem_fofa{
       max-width: 200px;
       position: relative;
       z-index: 10;
+      height: auto;
     }
 
     @keyframes float {
       0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+      100% { transform: translateY(-100dvh) scale(1.5); opacity: 0; }
     }
 
     /* Responsivo */
-    @media (max-width: 390px) {
-        body{
-          width:390px;
-          height: 844px;
-          max-width: 400px;
-          max-height: 844px;
-        }
-        .imagem_fofa{
-          max-width: 80px;
-          position: relative;
-          z-index: 10;
-        }
-        .container {
-          width: 80%;
-          padding: 20px;
-        }
-
-        h1 {
-          font-size: 1.5rem;
-        }
-
-        button {
-          font-size: 0.9rem;
-          margin: 0px;
-        }
+    @media (max-width: 600px) {
+      .imagem_fofa {
+        max-width: 80px;
+      }
+      .container {
+        width: 90%;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      button {
+        font-size: 0.9rem;
+        margin: 0px;
+        padding: 10px 16px;
+      }
+      .message {
+        font-size: 1.2rem;
+        max-height: 30vh;
+      }
     }
   </style>
 </head>
@@ -144,20 +150,20 @@
       <button class="no">Não 😢</button>
     </div>
     <div class="message">
-      <img class="imagem_fofa" src="..\presente da leticia\3d8bb60a-595a-4b1a-b9ea-113828e75aef.jpg">
-      <img class="imagem_fofa" src="..\presente da leticia\9758a6e9-4436-4ae5-8e6f-c7e4bd58b497.jpg">
-      <img class="imagem_fofa" src="..\presente da leticia\a5953035-037c-4a52-b33d-dca55658d78c.jpg">
+      <img class="imagem_fofa" src="..\presente da leticia\3d8bb60a-595a-4b1a-b9ea-113828e75aef.jpg" alt="Imagem fofa 1">
+      <img class="imagem_fofa" src="..\presente da leticia\9758a6e9-4436-4ae5-8e6f-c7e4bd58b497.jpg" alt="Imagem fofa 2">
+      <img class="imagem_fofa" src="..\presente da leticia\a5953035-037c-4a52-b33d-dca55658d78c.jpg" alt="Imagem fofa 3">
       <br>
       Eu te amo meus 1,55, você me fez a pessoa mais feliz do mundo! 💖
     </div>
   </div>
-  <!-- JavaScript com corações e botões -->
+
   <script>
     // Corações flutuando
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
-      heart.style.left = Math.random() * 200 + "vw";
+      heart.style.left = Math.random() * 100 + "vw";
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 4000);
     }
@@ -174,14 +180,13 @@
       yesBtn.style.position = 'center';
     });
 
-    // Botão "Não" que desaparece e reaparece em outra posição
     noBtn.addEventListener('click', () => {
       noBtn.style.transition = "opacity 0.5s ease";
       noBtn.style.opacity = 0;
 
       setTimeout(() => {
-        const x = Math.random() * (window.innerWidth - 390);
-        const y = Math.random() * (window.innerHeight - 844);
+        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
 
         noBtn.style.position = 'absolute';
         noBtn.style.left = `${x}px`;
